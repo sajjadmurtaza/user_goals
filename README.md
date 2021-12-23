@@ -6,6 +6,8 @@ Rails Version: 7.0.0
 
 Simple API to create User goals. User can have many goals and one goal can have many key results.
 
+Before test please check pg ```database.yml``` configuration accordingly https://github.com/sajjadmurtaza/user_goals/blob/main/config/database.yml
+
 ### Key files
 
     
@@ -35,26 +37,24 @@ Simple API to create User goals. User can have many goals and one goal can have 
 The following diagram show the process/workflow of the application.
     
  
-    │    1. POST request with all required params will create a GOAL and return a  serialize hash │ 
-    ├─────────────────────────────────────────────────────────────────────────────────────────────│     
-    │                                             ├                        
-    │    2. It returns all matched partners       │               
-    │──────────────────────────────────────────── │
-    │                                             │
-    │    3. It raises an error with wrong params  │
-    ├──────────────────────────────────────────── │ 
-    │                                             ├       
-    │    3. also return distance to customer      │ 
-    │ ────────────────────────────────────────────│
+    │    1. POST api/v1/goals request with required params will create a GOAL  │ 
+    ├──────────────────────────────────────────────────────────────────────────│  
+    │                                                                          │                       
+    │    2. GET request api/v1/goals (user_id in params) will return user goals│               
+    │───────────────────────────────────────────────────────────────────────── │
+    │                                                                          │
+    │    3. POST api/v1/key_results (required params) will create a Key result │
+    ├───────────────────────────────────────────────────────────────────────── │ 
+    
 
 ***
 **Setup**
 
 * first clone the directory 
                       ```
-                      git clone git@github.com:sajjadmurtaza/matching_customer_and_partner.git'
+                      git clone git@github.com:sajjadmurtaza/user_goals.git'
                       ```
- *  ```cd matching_customer_and_partner```
+ *  ```cd user_goals```
 
  *  ```bundle install ```
  *  ```rake db:create```
@@ -102,11 +102,13 @@ and request result will be like that
  
     Enter url ```GET http://localhost:3000/api/v1/goals``` and pass parameters as json
 
-    {
-      "goal": {
-        "user_id": 4
+    ```
+      {
+        "goal": {
+          "user_id": 4
+        }
       }
-    }
+    ```
 
 ![alt text](https://raw.githubusercontent.com/sajjadmurtaza/SchedulyBridge/master/app/assets/images/g3.png "MP1 Screenshot")
 
@@ -114,12 +116,14 @@ and request result will be like that
  
     Enter url ```POST http://localhost:3000/api/v1/key_results``` and pass parameters as json
 
-    {
-      "key_result": {
-        "title": "Do Something",
-        "goal_id": 1
-        }
-    }
+    ```
+      {
+        "key_result": {
+          "title": "Do Something",
+          "goal_id": 1
+          }
+      }
+    ```
 
 ### Specs
 
