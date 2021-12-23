@@ -14,8 +14,9 @@
 
 FactoryBot.define do
   factory :key_result do
-    goal_id { 1 }
-    title { 'MyString' }
+    title { 'Hire ROR Developer' }
     status { 1 }
+
+    association :goal
   end
 end

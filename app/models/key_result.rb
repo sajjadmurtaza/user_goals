@@ -13,18 +13,17 @@
 # frozen_string_literal: true
 
 class KeyResult < ApplicationRecord
-  enum status: %i[not_started progress completed]
   validates :title, :status, :goal_id, presence: true
-
-  belongs_to :goal
+  enum status: %i[not_started progress completed]
 
   scope :by_goal, ->(goal_id) { includes(:goal).where(goal: { id: goal_id }) }
   scope :completed, -> { where(status: KeyResult.statuses[:completed]) }
 
+  belongs_to :goal
+
   def self.progress(goal)
     all_key_results = by_goal(goal.id)
     completed_key_results = all_key_results.completed.count
-
     return '0%' if all_key_results.blank? || completed_key_results.zero?
 
     "#{(completed_key_results.to_f / all_key_results.count) * 100.round(2)}%"

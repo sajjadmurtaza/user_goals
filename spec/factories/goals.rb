@@ -15,9 +15,16 @@
 
 FactoryBot.define do
   factory :goal do
-    user_id { 1 }
-    title { 'MyString' }
+    title { 'Grow our engineering team' }
     start_date { '2021-12-22' }
-    end_date { 'MyString' }
+    end_date { '2022-12-22' }
+
+    association :user
+
+    trait :with_key_results do
+      after(:create) do |goal|
+        goal.key_results << create(:key_result)
+      end
+    end
   end
 end

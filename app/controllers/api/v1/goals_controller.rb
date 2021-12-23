@@ -11,8 +11,6 @@ module Api
 
       def index
         result = Goal.by_user(gaol_params[:user_id])
-        p ' ======'
-        p result
 
         render json: ::GoalsList.serialize(result)
       end

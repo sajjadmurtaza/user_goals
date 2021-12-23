@@ -13,7 +13,13 @@
 
 FactoryBot.define do
   factory :user do
-    name { 'MyString' }
-    email { 'MyString' }
+    name { 'Jhon' }
+    email { 'jhon@gmail.com' }
+
+    trait :with_goals do
+      after(:create) do |user|
+        user.goals << create(:goal)
+      end
+    end
   end
 end
