@@ -16,7 +16,7 @@ module Api
       private
 
       def key_result_params
-        params.permit(:title, :status, :goal_id)
+        params.require(:key_result).permit(:title, :status, :goal_id)
       end
     end
   end

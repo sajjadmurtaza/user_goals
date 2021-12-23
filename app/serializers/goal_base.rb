@@ -11,7 +11,7 @@ class GoalBase
     {
       title: goal.title,
       start_date: goal.start_date,
-      end_date: goal.start_date,
+      end_date: goal.end_date,
       progress: KeyResult.progress(goal)
     }
   end

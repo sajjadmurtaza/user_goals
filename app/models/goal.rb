@@ -19,5 +19,5 @@ class Goal < ApplicationRecord
   belongs_to :user
   has_many :key_results, dependent: :destroy
 
-  scope :by_user, ->(user_id) { includes(:user, :key_results).where(id: user_id) }
+  scope :by_user, ->(user_id) { includes(:user, :key_results).where(user_id: user_id) }
 end

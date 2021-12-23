@@ -6,11 +6,13 @@ module Api
       def create
         result = ::Goals::Create.new(gaol_params).run
 
-        render json: result.to_json
+        render json: result
       end
 
       def index
-        result = Goal.by_user(params[:user_id])
+        result = Goal.by_user(gaol_params[:user_id])
+        p ' ======'
+        p result
 
         render json: ::GoalsList.serialize(result)
       end
@@ -18,7 +20,7 @@ module Api
       private
 
       def gaol_params
-        params.permit(:title, :user_id, :start_date, :end_date)
+        params.require(:goal).permit(:title, :user_id, :start_date, :end_date)
       end
     end
   end

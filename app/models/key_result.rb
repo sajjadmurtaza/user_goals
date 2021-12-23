@@ -23,10 +23,10 @@ class KeyResult < ApplicationRecord
 
   def self.progress(goal)
     all_key_results = by_goal(goal.id)
-    return '0%' if all_key_results.blank?
+    completed_key_results = all_key_results.completed.count
 
-    completed_key_results = all_key_results.completed
+    return '0%' if all_key_results.blank? || completed_key_results.zero?
 
-    "#{(all_key_results.count / completed_key_results.count) * 100.round(2)}%"
+    "#{(completed_key_results.to_f / all_key_results.count) * 100.round(2)}%"
   end
 end
