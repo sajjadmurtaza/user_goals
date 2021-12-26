@@ -3,6 +3,10 @@
 module Api
   module V1
     class KeyResultsController < ApplicationController
+      def index
+        render json: KeyResult.where(goal_id: key_result_params[:goal_id])
+      end
+      
       def create
         key_result = KeyResult.new(key_result_params)
 

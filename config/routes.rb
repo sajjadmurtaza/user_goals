@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   defaults format: :json do
     namespace :api do
       namespace :v1 do
-        resources :goals, only: %i[index create]
-        resources :key_results, only: [:create]
+        resources :goals, only: %i[index create update destroy]
+        resources :key_results, only: [:create, :index]
       end
     end
   end

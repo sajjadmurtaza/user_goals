@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreatedGoal < GoalBase
+class GoalObject < GoalBase
   def self.serialize(goal)
     return goal.errors.full_messages if goal.errors.present?
 

@@ -5,7 +5,7 @@ module Goals
     def run
       return empty_user_error_message if @user.nil?
 
-      ::CreatedGoal.serialize(goal)
+      ::GoalObject.serialize(goal)
     end
 
     private
